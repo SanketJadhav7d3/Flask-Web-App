@@ -1,0 +1,26 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Questrial&family=Sora:wght@699&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="title-container">
+        <p class="title">
+        Sick Plants?<br>
+        Let us<br>
+        diagnose<br>
+        them!
+        </p>
+      </div>
+      <div class="form-outer-container">
+        <a href="{{ url_for('trial')}}"><button class="button-89" role="button">Try Now</button></a>
+      </div>
+    </div>
+  </body>
+</html>
+

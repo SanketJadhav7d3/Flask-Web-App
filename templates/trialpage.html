@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/trialpage.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Questrial&family=Sora:wght@699&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    {% with messages = get_flashed_messages()%}
+      {% if messages%}
+        {% for message in messages%}
+          <p>{{meassage}}</p>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
+
+    {% if not img_path %}
+    <div plass="trial-main-container">
+      <div class="form-container">
+        <form method="POST" enctype="multipart/form-data" action="/trial">
+          <input type="file" name="image" /><br>
+          <input class="button-89" type="submit" value="Classify" />
+        </form>
+      </div>
+      {% endif %}
+      {% if img_path %}
+      <div class="output-container">
+        <div class="uploaded-image">
+          <img src="{{ img_path }}" class="imgBorder"/>
+        </div>
+        <div class="output-distribution">
+          <div class="most-probable-result">
+            Most likely disease is <span class='highlight'>{{ labels[0][1] }}</span>
+            with <span>{{ labels[0][0] }}%</span>
+          </div>
+          <div class="hidden-result-container">
+            Other probable results
+            {% for label in labels[1:] %}
+            <div class="hidden-result">
+              <span>{{ label[1] }}</span>  with Score <span>{{ label[0]}}</span><br>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
