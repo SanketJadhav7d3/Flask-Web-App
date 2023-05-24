@@ -45,10 +45,8 @@ def trial():
             img_path = os.path.join(app.config['UPLOADED_PATH'], filename)
 
             labels = classify(img_path)
-        else:
-            return render_template("trialpage.html")
 
-        return render_template("trialpage.html", img_path=img_path, labels=labels)
+            return render_template("trialpage.html", img_path=img_path, labels=labels)
 
     return render_template("trialpage.html")
 

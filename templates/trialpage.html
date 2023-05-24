@@ -10,14 +10,6 @@
   </head>
   <body>
 
-    {% with messages = get_flashed_messages()%}
-      {% if messages%}
-        {% for message in messages%}
-          <p>{{meassage}}</p>
-        {%endfor%}
-      {%endif%}
-    {%endwith%}
-
     {% if not img_path %}
     <div plass="trial-main-container">
       <div class="form-container">
@@ -25,6 +17,10 @@
           <input type="file" name="image" /><br>
           <input class="button-89" type="submit" value="Classify" />
         </form>
+
+        <div class="tips">
+          Please upload a clear image of only single leaf with no other object
+        </div>
       </div>
       {% endif %}
       {% if img_path %}
@@ -35,7 +31,7 @@
         <div class="output-distribution">
           <div class="most-probable-result">
             Most likely disease is <span class='highlight'>{{ labels[0][1] }}</span>
-            with <span>{{ labels[0][0] }}%</span>
+            with <span>{{ labels[0][0] }}%</span> <a href="{{ url_for('trial')}}"><button class="button-89" role="button">Try again</button></a>
           </div>
           <div class="hidden-result-container">
             Other probable results
