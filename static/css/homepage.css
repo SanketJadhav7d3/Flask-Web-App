@@ -2,7 +2,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("images/leaf_background.jpg");
+  background-color: rgb(30, 39, 32);
+  background-image: url("images/leaf_background_5.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -11,11 +13,9 @@ body {
   color: rgb(187, 214, 198);
 }
 
-
-/* CSS */
 .button-89 {
-  --b: 6px;   /* border thickness */
-  --s: .45em; /* size of the corner */
+  --b: 6px;  
+  --s: .45em; 
   --color: rgb(246, 0, 116);
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
@@ -57,9 +57,17 @@ body {
 
 .title-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 5;
+}
+
+.more-information {
+  font-family: 'Sora', sans-serif;
+  font-size: 30px;
+  padding: 40px 20px;
+  letter-spacing: 3px;
 }
 
 .title-container > p {
@@ -76,3 +84,4 @@ body {
   justify-content: space-around;
   flex-direction: column;
 }
+

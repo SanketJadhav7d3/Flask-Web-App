@@ -11,15 +11,15 @@
   <body>
 
     {% if not img_path %}
-    <div plass="trial-main-container">
       <div class="form-container">
+        <a href="{{ url_for('home')}}"><button class="button-89 home-button">Home</button></a>
         <form method="POST" enctype="multipart/form-data" action="/trial">
           <input type="file" name="image" /><br>
           <input class="button-89" type="submit" value="Classify" />
         </form>
 
         <div class="tips">
-          Please upload a clear image of only single leaf with no other object
+          <img src="" />Please upload a clear image of only single leaf with no other object
         </div>
       </div>
       {% endif %}
@@ -30,9 +30,13 @@
         </div>
         <div class="output-distribution">
           <div class="most-probable-result">
-            Most likely disease is <span class='highlight'>{{ labels[0][1] }}</span>
-            with <span>{{ labels[0][0] }}%</span> <a href="{{ url_for('trial')}}"><button class="button-89" role="button">Try again</button></a>
+            <div class="most-probable-result-text">
+              Most likely disease is <br><span class='highlight'>{{ labels[0][1] }}</span><br>
+              with <span>{{ labels[0][0] }}%</span> 
+            </div>
+            <a href="{{ url_for('trial')}}"><button class="button-89" role="button">Try again</button></a>
           </div>
+          <button id="more-results" class="button-89">More results</button>
           <div class="hidden-result-container">
             Other probable results
             {% for label in labels[1:] %}
@@ -45,5 +49,12 @@
       </div>
       {% endif %}
     </div>
+    <script>
+      let moreResults = document.getElementById("more-results");
+
+      moreResults.addEventListener("click", function() {
+        document.getElementsByClassName("hidden-result-container")[0].style.visibility = 'visible';
+      })
+    </script>
   </body>
 </html>

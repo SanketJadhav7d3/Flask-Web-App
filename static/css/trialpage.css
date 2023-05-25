@@ -23,10 +23,12 @@
 
 .tips {
   display: flex;
+  bakcground-color: rgba(0, 0, 0, 0.4);
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  color: rgb(187, 214, 198);
   font-size: 25px;
-  color: rgb(246, 0, 116);
   padding: 40px 20px;
   border-radius: 20px;
   border: 2px solid;
@@ -35,15 +37,16 @@
 
 .output-container {
   display: flex;
-  flex-grow: 5;
+  height: 100vh;
+  width: 100vw;
   justify-content: center;
-  align-items: center;
+  align-items: space-evenly;
   flex-direction: row;
 }
 
 .uploaded-image {
   display: flex;
-  flex-grow: 5;
+  width: 50%;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -61,7 +64,7 @@
 
 .output-distribution {
   display: flex;
-  flex-grow: 5;
+  width: 50%;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
@@ -71,6 +74,7 @@
   justify-content: center;
   align-items: center;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -96,6 +100,10 @@ input[type=file]::file-selector-button:hover {
   background: #0d45a5;
 }
 
+#more-results {
+  margin-top: 40px; 
+}
+
 .hidden-result-container {
   opacity: 1;
   display: flex;
@@ -104,16 +112,39 @@ input[type=file]::file-selector-button:hover {
   font-size: 20px;
   justify-content: space-evenly;
   align-items: center;
+  visibility: hidden;
 }
 
 .hidden-result {
 }
 
+.show-result {
+  visibility: visible; 
+}
+
 .most-probable-result {
-  width: 500px;
+  flex-grow: .5;
   line-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.most-probable-result-text {
+  font-size: 40px;
+  flex-grow: 5;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 span {
   color: rgb(246, 0, 116);
+}
+
+.home-button {
+  position: absolute;
+  top: 30px;
+  left: 50px;
 }

@@ -29,7 +29,6 @@ def classify(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-
     # else just render the basic template 
     return render_template("homepage.html")
 
@@ -46,7 +45,7 @@ def trial():
 
             labels = classify(img_path)
 
-            return render_template("trialpage.html", img_path=img_path, labels=labels)
+            return render_template("trialpage.html", logo_path="triangle.png", img_path=img_path, labels=labels)
 
     return render_template("trialpage.html")
 
