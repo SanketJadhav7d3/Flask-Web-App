@@ -12,6 +12,7 @@
 
     {% if not img_path %}
       <div class="form-container">
+
         <a href="{{ url_for('home')}}"><button class="button-89 home-button">Home</button></a>
         <form method="POST" enctype="multipart/form-data" action="/trial">
           <input type="file" name="image" /><br>
@@ -19,7 +20,9 @@
         </form>
 
         <div class="tips">
-          <img src="" />Please upload a clear image of only single leaf with no other object
+          <div class="tips-text">
+            Please upload a clear image of only single leaf with no other object
+          </div>
         </div>
       </div>
       {% endif %}
@@ -51,7 +54,6 @@
     </div>
     <script>
       let moreResults = document.getElementById("more-results");
-
       moreResults.addEventListener("click", function() {
         document.getElementsByClassName("hidden-result-container")[0].style.visibility = 'visible';
       })

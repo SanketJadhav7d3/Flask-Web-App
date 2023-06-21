@@ -4,10 +4,18 @@ from werkzeug.utils import secure_filename
 import requests
 import os
 import re
+import sys
 
+
+# api key check
+try: 
+    api_key = os.environ.get('huggingface_api_key')
+except:
+    print("Please set your huggingface api key as your environment variable")
+    sys.exit(1)
 
 API_URL = "https://api-inference.huggingface.co/models/SanketJadhav/PlantDiseaseClassifier-Resnet50"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": "Bearer " + api_key}
 
 app = Flask(__name__)
 
@@ -23,7 +31,7 @@ def classify(filename):
 
     response = requests.post(API_URL, headers=headers, data=data)
 
-    labels = list(map(lambda x: (round(x['score'], 5), remove_underscore(x['label'])), response.json()))
+    labels = list(map(lambda x: (round(x['score'] * 100, 5), remove_underscore(x['label'])), response.json()))
 
     return labels
 
@@ -45,33 +53,10 @@ def trial():
 
             labels = classify(img_path)
 
-            return render_template("trialpage.html", logo_path="triangle.png", img_path=img_path, labels=labels)
+            return render_template("trialpage.html", img_path=img_path, labels=labels)
 
     return render_template("trialpage.html")
 
-@app.route('/response', methods=['GET', 'POST'])
-def response():
-    if request.method == 'POST':
-        file = request.files.get('img_path')
-        print(file)
-        return render_template("response.html", name="I like anime", img_path=img_path, labels=labels)
-
-    # else just render the basic template 
-    return render_template("response.html")
-
-@app.context_processor
-def utility_processor():
-    def classify(filename):
-        with open(filename, "rb") as f:
-            data = f.read()
-
-        response = requests.post(API_URL, headers=headers, data=data)
-
-        labels = map(lambda x: {round(x['score'], 4), remove_underscore(x['label'])}, response.json())
-
-        return labels
-
-    return dict(classify=classify)
 
 if __name__ == "__main__":
     app.run(debug=True)
